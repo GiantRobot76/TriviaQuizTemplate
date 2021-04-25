@@ -86,3 +86,15 @@ header {
   font-weight: bold;
   font-size: x-large;
 }
+
+.results-button {
+  display: none;
+  width: 80%;
+  height: 10rem;
+  margin-top: 1rem;
+  margin-left: 7.5rem;
+  background-color: tan;
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
