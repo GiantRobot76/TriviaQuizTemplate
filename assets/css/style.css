@@ -1,3 +1,4 @@
+/* Setting Text Size so that 1rem = 10px; */
 html {
   font-size: 62.5%;
 }
@@ -40,9 +41,9 @@ header {
 }
 
 .question-card {
-  height: 70rem;
+  height: 80rem;
   width: 70rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
   border: white solid 3px;
 }
 
@@ -63,4 +64,25 @@ header {
   color: white;
   font-size: xx-large;
   font-weight: bold;
+}
+
+.question-text {
+  height: 15rem;
+  width: 90%;
+  border: dashed 3px black;
+  margin-top: 1rem;
+  margin-left: 3rem;
+  font-size: xx-large;
+}
+
+.answer-button {
+  display: block;
+  width: 80%;
+  height: 10rem;
+  margin-top: 1rem;
+  margin-left: 7.5rem;
+  background-color: lightsteelblue;
+  text-align: center;
+  font-weight: bold;
+  font-size: x-large;
 }
