@@ -50,7 +50,7 @@ var q5 = [
   3,
 ];
 
-//Global Variables for Answer Checking and Score Retention
+//Global Variables for Answer Checking, Score Retention, and Clock Management
 var numQuestions = 5;
 var questArray = [q1, q2, q3, q4, q5];
 var currentScore = 0;
@@ -86,6 +86,7 @@ function clearQuestion() {
   ans2.textContent = "";
   ans3.textContent = "";
   ans4.textContent = "";
+  resButton.textContent = "";
   ans1.setAttribute("style", "background-color:lightsteelblue");
   ans2.setAttribute("style", "background-color:lightsteelblue");
   ans3.setAttribute("style", "background-color:lightsteelblue");
@@ -103,6 +104,7 @@ function gameOver() {
   alert("That's all folks!!!");
 }
 
+/*Timer Fucntion. Controls Clock*/
 function timer() {
   var timeInterval = setInterval(function () {
     countdown.textContent = "Seconds Remaining: " + timeLeft;
@@ -119,12 +121,12 @@ function timer() {
 ans1.addEventListener("click", function () {
   if (currentAnswer === 2) {
     ans1.setAttribute("style", "background-color:green");
-    currentScore = currentScore + 10;
+    currentScore += 10;
     resButton.setAttribute("style", "display:block");
-    resButton.textContent =
-      "Correct! Your Current Score is: " +
-      currentScore +
-      " Click here to move to the next question.";
+    resButton.textContent = "Correct! Your Current Score is: " + currentScore;
+    setTimeout(nextQuestion, 1000);
+    // +
+    // " Click here to move to the next question.";
   } else {
     ans1.setAttribute("style", "background-color:red");
     resButton.setAttribute("style", "display:block");
@@ -132,21 +134,23 @@ ans1.addEventListener("click", function () {
     resButton.textContent =
       "Sorry. The Correct Answer was " +
       currentQuestArray[currentAnswer] +
-      " Your Current Score is: \n" +
-      currentScore +
-      " .Click here to move to the next question.";
+      ". Your Current Score is: \n" +
+      currentScore;
+    setTimeout(nextQuestion, 1000);
+    // +
+    // " .Click here to move to the next question.";
   }
 });
 
 ans2.addEventListener("click", function () {
   if (currentAnswer === 3) {
     ans2.setAttribute("style", "background-color:green");
-    currentScore = currentScore + 10;
+    currentScore += 10;
     resButton.setAttribute("style", "display:block");
-    resButton.textContent =
-      "Correct! Your Current Score is: " +
-      currentScore +
-      " Click here to move to the next question.";
+    resButton.textContent = "Correct! Your Current Score is: " + currentScore;
+    setTimeout(nextQuestion, 1000);
+    // +
+    // " Click here to move to the next question.";
   } else {
     ans2.setAttribute("style", "background-color:red");
     resButton.setAttribute("style", "display:block");
@@ -154,21 +158,23 @@ ans2.addEventListener("click", function () {
     resButton.textContent =
       "Sorry. The Correct Answer was " +
       currentQuestArray[currentAnswer] +
-      " Your Current Score is: \n" +
-      currentScore +
-      " .Click here to move to the next question.";
+      ". Your Current Score is: \n" +
+      currentScore;
+    setTimeout(nextQuestion, 1000);
+    // +
+    // " .Click here to move to the next question.";
   }
 });
 
 ans3.addEventListener("click", function () {
   if (currentAnswer === 4) {
     ans3.setAttribute("style", "background-color:green");
-    currentScore = currentScore + 10;
+    currentScore += 10;
     resButton.setAttribute("style", "display:block");
-    resButton.textContent =
-      "Correct! Your Current Score is: " +
-      currentScore +
-      " Click here to move to the next question.";
+    resButton.textContent = "Correct! Your Current Score is: " + currentScore;
+    setTimeout(nextQuestion, 1000);
+    // +
+    // " Click here to move to the next question.";
   } else {
     ans3.setAttribute("style", "background-color:red");
     resButton.setAttribute("style", "display:block");
@@ -176,21 +182,23 @@ ans3.addEventListener("click", function () {
     resButton.textContent =
       "Sorry. The Correct Answer was " +
       currentQuestArray[currentAnswer] +
-      " Your Current Score is: \n" +
-      currentScore +
-      " .Click here to move to the next question.";
+      ". Your Current Score is: \n" +
+      currentScore;
+    setTimeout(nextQuestion, 1000);
+    //  +
+    // " .Click here to move to the next question.";
   }
 });
 
 ans4.addEventListener("click", function () {
   if (currentAnswer === 5) {
     ans4.setAttribute("style", "background-color:green");
-    currentScore = currentScore + 10;
+    currentScore += 10;
     resButton.setAttribute("style", "display:block");
-    resButton.textContent =
-      "Correct! Your Current Score is: " +
-      currentScore +
-      " Click here to move to the next question.";
+    resButton.textContent = "Correct! Your Current Score is: " + currentScore;
+    setTimeout(nextQuestion, 1000);
+    // +
+    // " Click here to move to the next question.";
   } else {
     ans4.setAttribute("style", "background-color:red");
     resButton.setAttribute("style", "display:block");
@@ -198,9 +206,11 @@ ans4.addEventListener("click", function () {
     resButton.textContent =
       "Sorry. The Correct Answer was " +
       currentQuestArray[currentAnswer] +
-      " Your Current Score is: \n" +
-      currentScore +
-      " .Click here to move to the next question.";
+      ". Your Current Score is: \n" +
+      currentScore;
+    setTimeout(nextQuestion, 1000);
+    // +
+    // " .Click here to move to the next question.";
   }
 });
 
