@@ -67,6 +67,13 @@ var ans3 = document.getElementById("answer3");
 var ans4 = document.getElementById("answer4");
 var resButton = document.getElementById("showResult");
 var countdown = document.getElementById("clock");
+var qCard = document.getElementById("question-card");
+var startButton = document.getElementById("start-button");
+var startBox = document.getElementById("start");
+var gameOverBox = document.getElementById("game-over");
+var finalScore = document.getElementById("score-span");
+var playAgainButton = document.getElementById("play-again");
+var leaderButton = document.getElementById("register-score");
 
 function loadQuestion(questArray) {
   questNum.textContent = "Question " + questArray[0];
@@ -77,6 +84,14 @@ function loadQuestion(questArray) {
   ans4.textContent = questArray[5];
   currentAnswer = questArray[6];
   resButton.setAttribute("style", "display:none");
+}
+
+function startGame() {
+  startBox.setAttribute("style", "display:none");
+  qCard.setAttribute("style", "display:block");
+  gameOverBox.setAttribute("style", "display:none");
+  loadQuestion(q1);
+  timer();
 }
 
 function clearQuestion() {
@@ -96,12 +111,21 @@ function clearQuestion() {
 function nextQuestion() {
   clearQuestion();
   questionIndex++;
+  if (questionIndex === questArray.length) {
+    gameOver();
+  }
   currentQuestArray = questArray[questionIndex];
   loadQuestion(currentQuestArray);
 }
 
 function gameOver() {
-  alert("That's all folks!!!");
+  qCard.setAttribute("style", "display:none");
+  timeLeft = 0;
+  gameOverBox.setAttribute(
+    "style",
+    "display:flex; flex-direction: column; justify-items:center; align-content: center; align-items: center; "
+  );
+  finalScore.textContent = currentScore;
 }
 
 /*Timer Fucntion. Controls Clock*/
@@ -116,6 +140,9 @@ function timer() {
     }
   }, 1000);
 }
+
+//button for start game
+startButton.addEventListener("click", startGame);
 
 //button event listeners for answer check. Checks index of button pushed against the current question answer.
 ans1.addEventListener("click", function () {
@@ -221,5 +248,5 @@ resButton.addEventListener("click", function () {
   } else nextQuestion();
 });
 
-loadQuestion(q1);
-timer();
+// loadQuestion(q1);
+// timer();

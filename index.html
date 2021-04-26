@@ -22,7 +22,16 @@
     <main>
       <section class="row-container">
         <div class="column-containter">
-          <div class="question-card">
+          <div class="start-screen" , id="start">
+            <p>
+              You will be given 1 minute to answer 5 questions. Incorrect
+              answers will subtract 10 seconds from your available time. If you
+              run out of time, the quiz is over. Please click start button to
+              begin.
+            </p>
+            <button class="start-button" id="start-button">Start</button>
+          </div>
+          <div class="question-card" id="question-card">
             <div class="question-header" id="qNum">Question Number:</div>
             <textarea
               class="question-text"
@@ -45,6 +54,13 @@
               Button 5 Goes Here
             </button>
           </div>
+        </div>
+        <div class="game-over" id="game-over">
+          <p>Game Over. Your Score was: <span id="score-span"></span></p>
+          <button class="play-again" id="play-again">Play Again</button>
+          <button class="register-score" id="register-score">
+            Register Score on Leaderboard
+          </button>
         </div>
       </section>
     </main>
