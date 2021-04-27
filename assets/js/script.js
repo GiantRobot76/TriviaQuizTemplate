@@ -58,6 +58,9 @@ var questionIndex = 0;
 var currentQuestArray = q1;
 var timeLeft = 60;
 
+//gameScores array used for leaderboard. If there are items in local storage, array is set to include those. Otherwise initialized as empty
+var gameScores = JSON.parse(localStorage.getItem("results")) || [];
+
 //variable assignments to get elements/IDs used in DOM operations
 var questNum = document.getElementById("qNum");
 var questText = document.getElementById("qText");
@@ -74,6 +77,9 @@ var gameOverBox = document.getElementById("game-over");
 var finalScore = document.getElementById("score-span");
 var playAgainButton = document.getElementById("play-again");
 var leaderButton = document.getElementById("register-score");
+var leaderBoard = document.getElementById("leaderboard");
+var initButton = document.getElementById("initial-entry");
+var inputData = document.getElementById("input-form");
 
 function loadQuestion(questArray) {
   questNum.textContent = "Question " + questArray[0];
@@ -90,6 +96,11 @@ function startGame() {
   startBox.setAttribute("style", "display:none");
   qCard.setAttribute("style", "display:block");
   gameOverBox.setAttribute("style", "display:none");
+  timeLeft = 60;
+  score = 0;
+  questionIndex = 0;
+  var questArray = [q1, q2, q3, q4, q5];
+  currentQuestArray = q1;
   loadQuestion(q1);
   timer();
 }
@@ -128,6 +139,17 @@ function gameOver() {
   finalScore.textContent = currentScore;
 }
 
+function openLeader() {
+  qCard.setAttribute("style", "display:none");
+  gameOverBox.setAttribute("style", "display:none");
+  leaderBoard.setAttribute(
+    "style",
+    "display:flex; flex-direction: column; justify-items:center; align-content: center; align-items: center;"
+  );
+
+  renderUsers();
+}
+
 /*Timer Fucntion. Controls Clock*/
 function timer() {
   var timeInterval = setInterval(function () {
@@ -139,6 +161,16 @@ function timer() {
       gameOver();
     }
   }, 1000);
+}
+
+//Render List for Leaderboard. Appends an LI item for all initial/score pairs in local storage
+function renderUsers() {
+  for (var i = 0; i < gameScores.length; i++) {
+    var li = document.createElement("li");
+
+    li.textContent = gameScores[i].initial + " - " + gameScores[i].score;
+    document.getElementById("data").append(li);
+  }
 }
 
 //button for start game
@@ -248,5 +280,28 @@ resButton.addEventListener("click", function () {
   } else nextQuestion();
 });
 
-// loadQuestion(q1);
-// timer();
+playAgainButton.addEventListener("click", startGame);
+
+leaderButton.addEventListener("click", openLeader);
+
+//Form Event Listiner to capture initials
+
+initButton.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  var initials = document.querySelector("#initials").value;
+  var score = currentScore;
+
+  //add new key-value pair to gameScores array
+  gameScores.push({ initial: initials, score: score });
+
+  localStorage.setItem("results", JSON.stringify(gameScores));
+
+  var li = document.createElement("li");
+
+  //append new li item to list of scores
+  li.textContent = initials + " - " + score;
+  document.getElementById("data").append(li);
+
+  // console.log(initials);
+});
