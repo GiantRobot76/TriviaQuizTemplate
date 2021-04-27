@@ -12,41 +12,41 @@ var q1 = [
 
 var q2 = [
   "2",
-  "JS stands for what?",
-  "Just Skating",
-  "Jupiter's Sattelites",
-  "Justin Slitherine",
-  "Javascript",
+  ".random() is a method associated with which JS object?",
+  "Statistics",
+  "Probability",
+  "Stochasitcs",
+  "Math",
   5,
 ];
 
 var q3 = [
   "3",
-  "Java is the nickname for what beverage?",
-  "Beer",
-  "Wine",
-  "Coffee",
-  "Tea",
+  "Which of the following mtehods removes the last item from an array?",
+  ".slice()",
+  ".push()",
+  ".pop()",
+  ".flat()",
   4,
 ];
 
 var q4 = [
   "4",
-  "Java is also an island in what country?",
-  "Indonesia",
-  "Malaysia",
-  "Singapore",
-  "East Timor",
+  ".getElementbyID() is a method associated with which JS Object",
+  "Document",
+  "Window",
+  "Main",
+  "HTML",
   2,
 ];
 
 var q5 = [
   "5",
-  "Javascript can be programmed on all of the following except:",
-  "PC",
-  "Nintendo Switch",
-  "Macintosh",
-  "Linux",
+  "What is the highest index for this array ['a', 'b', 'c', 'd']",
+  "4",
+  "3",
+  "d",
+  "5",
   3,
 ];
 
@@ -80,6 +80,9 @@ var leaderButton = document.getElementById("register-score");
 var leaderBoard = document.getElementById("leaderboard");
 var initButton = document.getElementById("initial-entry");
 var inputData = document.getElementById("input-form");
+var leaveBoard = document.getElementById("leave-board");
+var clearScores = document.getElementById("clear-scores");
+var recentScores = document.getElementById("recent-scores");
 
 function loadQuestion(questArray) {
   questNum.textContent = "Question " + questArray[0];
@@ -96,6 +99,7 @@ function startGame() {
   startBox.setAttribute("style", "display:none");
   qCard.setAttribute("style", "display:block");
   gameOverBox.setAttribute("style", "display:none");
+  leaderBoard.setAttribute("style", "display:none");
   timeLeft = 60;
   score = 0;
   questionIndex = 0;
@@ -140,6 +144,7 @@ function gameOver() {
 }
 
 function openLeader() {
+  startBox.setAttribute("style", "display:none");
   qCard.setAttribute("style", "display:none");
   gameOverBox.setAttribute("style", "display:none");
   leaderBoard.setAttribute(
@@ -147,7 +152,12 @@ function openLeader() {
     "display:flex; flex-direction: column; justify-items:center; align-content: center; align-items: center;"
   );
 
-  renderUsers();
+  // renderUsers();
+}
+
+function clearLeader() {
+  localStorage.clear();
+  location.reload();
 }
 
 /*Timer Fucntion. Controls Clock*/
@@ -163,15 +173,15 @@ function timer() {
   }, 1000);
 }
 
-//Render List for Leaderboard. Appends an LI item for all initial/score pairs in local storage
-function renderUsers() {
-  for (var i = 0; i < gameScores.length; i++) {
-    var li = document.createElement("li");
+//Render List for Leaderboard. Appends an LI item for all initial/score pairs in local storage - not needed in final implementation keeping here for reference
+// function renderUsers() {
+//   for (var i = 0; i < gameScores.length; i++) {
+//     var li = document.createElement("li");
 
-    li.textContent = gameScores[i].initial + " - " + gameScores[i].score;
-    document.getElementById("data").append(li);
-  }
-}
+//     li.textContent = gameScores[i].initial + " - " + gameScores[i].score;
+//     document.getElementById("data").append(li);
+//   }
+// }
 
 //button for start game
 startButton.addEventListener("click", startGame);
@@ -184,8 +194,6 @@ ans1.addEventListener("click", function () {
     resButton.setAttribute("style", "display:block");
     resButton.textContent = "Correct! Your Current Score is: " + currentScore;
     setTimeout(nextQuestion, 1000);
-    // +
-    // " Click here to move to the next question.";
   } else {
     ans1.setAttribute("style", "background-color:red");
     resButton.setAttribute("style", "display:block");
@@ -196,8 +204,6 @@ ans1.addEventListener("click", function () {
       ". Your Current Score is: \n" +
       currentScore;
     setTimeout(nextQuestion, 1000);
-    // +
-    // " .Click here to move to the next question.";
   }
 });
 
@@ -208,8 +214,6 @@ ans2.addEventListener("click", function () {
     resButton.setAttribute("style", "display:block");
     resButton.textContent = "Correct! Your Current Score is: " + currentScore;
     setTimeout(nextQuestion, 1000);
-    // +
-    // " Click here to move to the next question.";
   } else {
     ans2.setAttribute("style", "background-color:red");
     resButton.setAttribute("style", "display:block");
@@ -220,8 +224,6 @@ ans2.addEventListener("click", function () {
       ". Your Current Score is: \n" +
       currentScore;
     setTimeout(nextQuestion, 1000);
-    // +
-    // " .Click here to move to the next question.";
   }
 });
 
@@ -232,8 +234,6 @@ ans3.addEventListener("click", function () {
     resButton.setAttribute("style", "display:block");
     resButton.textContent = "Correct! Your Current Score is: " + currentScore;
     setTimeout(nextQuestion, 1000);
-    // +
-    // " Click here to move to the next question.";
   } else {
     ans3.setAttribute("style", "background-color:red");
     resButton.setAttribute("style", "display:block");
@@ -244,8 +244,6 @@ ans3.addEventListener("click", function () {
       ". Your Current Score is: \n" +
       currentScore;
     setTimeout(nextQuestion, 1000);
-    //  +
-    // " .Click here to move to the next question.";
   }
 });
 
@@ -256,8 +254,6 @@ ans4.addEventListener("click", function () {
     resButton.setAttribute("style", "display:block");
     resButton.textContent = "Correct! Your Current Score is: " + currentScore;
     setTimeout(nextQuestion, 1000);
-    // +
-    // " Click here to move to the next question.";
   } else {
     ans4.setAttribute("style", "background-color:red");
     resButton.setAttribute("style", "display:block");
@@ -268,8 +264,6 @@ ans4.addEventListener("click", function () {
       ". Your Current Score is: \n" +
       currentScore;
     setTimeout(nextQuestion, 1000);
-    // +
-    // " .Click here to move to the next question.";
   }
 });
 
@@ -284,7 +278,7 @@ playAgainButton.addEventListener("click", startGame);
 
 leaderButton.addEventListener("click", openLeader);
 
-//Form Event Listiner to capture initials
+//Form Event Listiner to capture initials.
 
 initButton.addEventListener("click", function (event) {
   event.preventDefault();
@@ -302,6 +296,8 @@ initButton.addEventListener("click", function (event) {
   //append new li item to list of scores
   li.textContent = initials + " - " + score;
   document.getElementById("data").append(li);
-
-  // console.log(initials);
 });
+
+leaveBoard.addEventListener("click", startGame);
+clearScores.addEventListener("click", clearLeader);
+recentScores.addEventListener("click", openLeader);
