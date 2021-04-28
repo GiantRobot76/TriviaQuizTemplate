@@ -126,7 +126,8 @@ function clearQuestion() {
 function nextQuestion() {
   clearQuestion();
   questionIndex++;
-  if (questionIndex === questArray.length - 1) {
+  if (questionIndex === 5) {
+    questionIndex = 0;
     gameOver();
   }
   currentQuestArray = questArray[questionIndex];
