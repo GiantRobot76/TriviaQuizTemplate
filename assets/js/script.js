@@ -103,7 +103,7 @@ function startGame() {
   timeLeft = 60;
   score = 0;
   questionIndex = 0;
-  var questArray = [q1, q2, q3, q4, q5];
+  questArray = [q1, q2, q3, q4, q5];
   currentQuestArray = q1;
   loadQuestion(q1);
   timer();
@@ -126,7 +126,7 @@ function clearQuestion() {
 function nextQuestion() {
   clearQuestion();
   questionIndex++;
-  if (questionIndex === questArray.length) {
+  if (questionIndex === questArray.length - 1) {
     gameOver();
   }
   currentQuestArray = questArray[questionIndex];
@@ -152,7 +152,7 @@ function openLeader() {
     "display:flex; flex-direction: column; justify-items:center; align-content: center; align-items: center;"
   );
 
-  // renderUsers();
+  renderUsers();
 }
 
 function clearLeader() {
@@ -173,15 +173,15 @@ function timer() {
   }, 1000);
 }
 
-//Render List for Leaderboard. Appends an LI item for all initial/score pairs in local storage - not needed in final implementation keeping here for reference
-// function renderUsers() {
-//   for (var i = 0; i < gameScores.length; i++) {
-//     var li = document.createElement("li");
+//Render List for Leaderboard. Appends an LI item for all initial/score pairs in local storage
+function renderUsers() {
+  for (var i = 0; i < gameScores.length; i++) {
+    var li = document.createElement("li");
 
-//     li.textContent = gameScores[i].initial + " - " + gameScores[i].score;
-//     document.getElementById("data").append(li);
-//   }
-// }
+    li.textContent = gameScores[i].initial + " - " + gameScores[i].score;
+    document.getElementById("data").append(li);
+  }
+}
 
 //button for start game
 startButton.addEventListener("click", startGame);
@@ -283,11 +283,17 @@ leaderButton.addEventListener("click", openLeader);
 initButton.addEventListener("click", function (event) {
   event.preventDefault();
 
+  console.log("pushed");
+
   var initials = document.querySelector("#initials").value;
   var score = currentScore;
 
+  console.log(initials);
+  console.log(score);
+
   //add new key-value pair to gameScores array
   gameScores.push({ initial: initials, score: score });
+  console.log(gameScores);
 
   localStorage.setItem("results", JSON.stringify(gameScores));
 
